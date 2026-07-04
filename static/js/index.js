@@ -1,5 +1,7 @@
 const DOMAINS = ["Tech", "Finance", "Design", "Product", "Marketing"];
 let currentDomain = "";
+let allMentors = [];
+let searchQuery = "";
 
 function makeFilterBtn(label, domain) {
   const btn = document.createElement("button");
@@ -24,25 +26,24 @@ function renderMentors(mentors) {
   const grid = document.getElementById("mentor-grid");
 
   if (!mentors.length) {
-    grid.innerHTML = '<p class="empty-state">No mentors found for this domain.</p>';
+    grid.innerHTML = '<p class="empty-state">No mentors match your search.</p>';
     return;
   }
 
   grid.innerHTML = mentors
     .map((m) => {
       const preview = m.bio.length > 100 ? m.bio.slice(0, 100) + "…" : m.bio;
+      const dotColor = getAvatarColor(m.name);
       return `
         <div class="card mentor-card" data-id="${m.id}">
+          <div class="card-domain-badge">${escapeHtml(m.domain)}</div>
           <div class="mentor-card-header">
             ${avatarHtml(m.name, "avatar-md")}
-            <div>
-              <div class="card-domain">${escapeHtml(m.domain)}</div>
-              <h3>${escapeHtml(m.name)}</h3>
-            </div>
+            <h3><span class="status-dot" style="background:${dotColor}"></span>${escapeHtml(m.name)}</h3>
           </div>
           <p class="muted">${escapeHtml(m.experience)}</p>
           <p class="bio-preview">${escapeHtml(preview)}</p>
-          <button class="btn btn-outline view-profile" data-id="${m.id}">View Profile</button>
+          <button class="btn btn-outline view-profile" data-id="${m.id}">View Profile &rarr;</button>
         </div>
       `;
     })
@@ -55,15 +56,30 @@ function renderMentors(mentors) {
   });
 }
 
+function applySearchAndRender() {
+  const q = searchQuery.trim().toLowerCase();
+  const filtered = !q
+    ? allMentors
+    : allMentors.filter((m) =>
+        [m.name, m.domain, m.bio].some((field) => field.toLowerCase().includes(q))
+      );
+  renderMentors(filtered);
+}
+
 async function loadMentors() {
   const grid = document.getElementById("mentor-grid");
   grid.innerHTML = '<p class="loading">Loading mentors…</p>';
   try {
-    const mentors = await api.getMentors(currentDomain);
-    renderMentors(mentors);
+    allMentors = await api.getMentors(currentDomain);
+    applySearchAndRender();
   } catch (err) {
     grid.innerHTML = `<p class="error-text">${escapeHtml(err.message)}</p>`;
   }
+}
+
+function runSearch() {
+  searchQuery = document.getElementById("mentor-search").value;
+  applySearchAndRender();
 }
 
 function renderSiteStats(data) {
@@ -119,6 +135,12 @@ async function loadSiteOverview() {
     document.getElementById("site-stats-grid").innerHTML = `<p class="error-text">${escapeHtml(err.message)}</p>`;
   }
 }
+
+document.getElementById("mentor-search").addEventListener("input", runSearch);
+document.getElementById("mentor-search-btn").addEventListener("click", runSearch);
+document.getElementById("mentor-search").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") runSearch();
+});
 
 renderFilters();
 loadMentors();

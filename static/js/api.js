@@ -92,8 +92,12 @@ function hashString(str) {
   return Math.abs(hash);
 }
 
+function getAvatarColor(name) {
+  return AVATAR_PALETTE[hashString(name) % AVATAR_PALETTE.length];
+}
+
 function avatarHtml(name, sizeClass) {
   const initials = getInitials(name);
-  const color = AVATAR_PALETTE[hashString(name) % AVATAR_PALETTE.length];
+  const color = getAvatarColor(name);
   return `<div class="avatar ${sizeClass}" style="background:${color}">${escapeHtml(initials)}</div>`;
 }

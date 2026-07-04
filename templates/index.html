@@ -1,7 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Mentors - NALUM Mentorship{% endblock %}
 {% block content %}
-<h1 class="page-title">Find a Mentor</h1>
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="hero-title">Find the <span class="accent">Right</span> Mentor</h1>
+    <p class="hero-subtitle">Connect with experienced professionals and accelerate your growth.</p>
+    <div class="hero-search">
+      <input type="text" id="mentor-search" placeholder="Search mentors by name, domain, or bio…">
+      <button id="mentor-search-btn" class="btn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <svg viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="20" r="2" fill="var(--red)" opacity="0.5"/>
+      <circle cx="270" cy="30" r="2" fill="var(--red)" opacity="0.5"/>
+      <circle cx="20" cy="150" r="2" fill="var(--red)" opacity="0.5"/>
+      <circle cx="280" cy="150" r="2" fill="var(--red)" opacity="0.5"/>
+      <circle cx="150" cy="15" r="2" fill="var(--red)" opacity="0.4"/>
+
+      <circle cx="85" cy="60" r="20" stroke="var(--red)" stroke-width="2.5"/>
+      <path d="M55 130 Q55 90 85 90 Q115 90 115 130" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round"/>
+
+      <circle cx="215" cy="60" r="20" stroke="var(--red)" stroke-width="2.5"/>
+      <path d="M185 130 Q185 90 215 90 Q245 90 245 130" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round"/>
+
+      <rect x="120" y="105" width="60" height="8" rx="2" stroke="var(--red)" stroke-width="2.5"/>
+      <path d="M130 105 L130 90 L170 90 L170 105" stroke="var(--red)" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <path d="M110 45 q18 -14 20 4" stroke="var(--red)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <circle cx="132" cy="42" r="3" fill="var(--red)"/>
+      <path d="M190 45 q-18 -14 -20 4" stroke="var(--red)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <circle cx="168" cy="42" r="3" fill="var(--red)"/>
+    </svg>
+  </div>
+</section>
+
 <div class="filter-bar" id="domain-filters"></div>
 <div class="grid" id="mentor-grid"></div>
 
