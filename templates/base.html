@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}NALUM Mentorship{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{{ url_for('index_page') }}" class="nav-brand">
+        <img src="{{ url_for('static', filename='images/nsut-logo.png') }}" alt="NSUT logo" class="nav-logo">
+        NALUM Mentorship
+      </a>
+      <div class="nav-links">
+        <a href="{{ url_for('index_page') }}">Home</a>
+        <a href="{{ url_for('forum_page') }}">Forum</a>
+        <a href="{{ url_for('mentor_dashboard_page') }}">Mentor Dashboard</a>
+        <a href="{{ url_for('student_dashboard_page') }}">Student Dashboard</a>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

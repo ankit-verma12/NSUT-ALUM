@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Post - NALUM Mentorship{% endblock %}
+{% block content %}
+<div id="post-detail" class="post-detail card">
+  <p class="loading">Loading post…</p>
+</div>
+
+<section class="comments-section">
+  <h2>Comments</h2>
+  <div id="comment-list"></div>
+
+  <form id="comment-form" class="form card">
+    <label>Your Name
+      <input type="text" id="comment-author" required>
+    </label>
+    <label>Comment
+      <textarea id="comment-body" rows="3" required></textarea>
+    </label>
+    <button type="submit" class="btn">Add Comment</button>
+  </form>
+  <div id="comment-message" class="message"></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  const POST_ID = {{ post_id }};
+</script>
+<script src="{{ url_for('static', filename='js/post.js') }}"></script>
+{% endblock %}

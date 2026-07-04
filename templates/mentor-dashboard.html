@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Mentor Dashboard - NALUM Mentorship{% endblock %}
+{% block content %}
+<h1 class="page-title">Mentor Dashboard</h1>
+
+<div class="form">
+  <label>Select your mentor profile
+    <select id="mentor-select">
+      <option value="">-- Choose mentor --</option>
+    </select>
+  </label>
+</div>
+
+<p id="mentor-empty-state" class="empty-state">Select a mentor profile above to view their booking requests.</p>
+
+<div id="mentor-dashboard-content" class="hidden">
+  <div class="stats-grid" id="mentor-stats-grid"></div>
+
+  <h2>Booking Requests</h2>
+  <div class="table-wrap">
+    <table class="data-table" id="mentor-bookings-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Email</th>
+          <th>Reason</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/mentor-dashboard.js') }}"></script>
+{% endblock %}

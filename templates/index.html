@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Mentors - NALUM Mentorship{% endblock %}
+{% block content %}
+<h1 class="page-title">Find a Mentor</h1>
+<div class="filter-bar" id="domain-filters"></div>
+<div class="grid" id="mentor-grid"></div>
+
+<section class="site-overview">
+  <h2>Platform Overview</h2>
+  <div class="stats-grid" id="site-stats-grid"></div>
+
+  <h3>Recent Forum Activity</h3>
+  <div id="site-recent-posts" class="post-list"></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

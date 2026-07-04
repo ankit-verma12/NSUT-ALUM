@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard - NALUM Mentorship{% endblock %}
+{% block content %}
+<h1 class="page-title">My Booking Requests</h1>
+
+<form id="email-form" class="form">
+  <label>Enter your email
+    <input type="email" id="student-email" required>
+  </label>
+  <button type="submit" class="btn">View My Requests</button>
+</form>
+
+<p id="student-empty-state" class="empty-state hidden"></p>
+
+<div class="table-wrap hidden" id="student-bookings-wrap">
+  <table class="data-table" id="student-bookings-table">
+    <thead>
+      <tr>
+        <th>Mentor</th>
+        <th>Reason</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/student-dashboard.js') }}"></script>
+{% endblock %}

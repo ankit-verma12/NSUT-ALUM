@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Mentor Profile - NALUM Mentorship{% endblock %}
+{% block content %}
+<div id="mentor-detail" class="mentor-detail">
+  <p class="loading">Loading mentor…</p>
+</div>
+
+<section class="booking-section card">
+  <h2>Book a Session</h2>
+  <form id="booking-form" class="form">
+    <label>Your Name
+      <input type="text" id="student_name" required>
+    </label>
+    <label>Email
+      <input type="email" id="email" required>
+    </label>
+    <label>Reason
+      <textarea id="reason" rows="4" required></textarea>
+    </label>
+    <label>Preferred Date
+      <input type="date" id="date" required>
+    </label>
+    <button type="submit" class="btn">Request Booking</button>
+  </form>
+  <div id="booking-message" class="message"></div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  const MENTOR_ID = {{ mentor_id }};
+</script>
+<script src="{{ url_for('static', filename='js/mentor.js') }}"></script>
+{% endblock %}
